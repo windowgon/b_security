@@ -1,6 +1,8 @@
 package com.jafa.security;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Iterator;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +20,9 @@ public class MemberAccessDeniedHanlder implements AccessDeniedHandler {
 	public void handle(HttpServletRequest request, HttpServletResponse response,
 			AccessDeniedException accessDeniedException) throws IOException, ServletException {
 		log.info("접근거부처리 핸들러");
+		log.info(accessDeniedException.getMessage());
+		StackTraceElement[] stackTrace = accessDeniedException.getStackTrace();
+		log.info(Arrays.toString(stackTrace));
 		response.sendRedirect(request.getContextPath()+"/member/accessError");
 	}
 }

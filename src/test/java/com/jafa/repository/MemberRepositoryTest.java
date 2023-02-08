@@ -1,8 +1,7 @@
-package com.jafa.service;
+package com.jafa.repository;
 
 import static org.junit.Assert.*;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +9,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import com.jafa.domain.AuthVO;
-import com.jafa.domain.MemberType;
 import com.jafa.domain.MemberVO;
+
+import lombok.extern.log4j.Log4j;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
@@ -21,26 +20,16 @@ import com.jafa.domain.MemberVO;
 		"classpath:spring-config/servlet-context.xml"
 })
 @WebAppConfiguration
-public class MemberServiceTest {
-	
+@Log4j
+public class MemberRepositoryTest {
+
 	@Autowired
-	MemberService memberService;
-
-	// 회원가입
+	MemberRepository memberRepository; 
+	
 	@Test
-	@Ignore
 	public void test() {
-		MemberVO vo = MemberVO.builder()
-				.memberId("leekwanghyup")
-				.password("1234")
-				.email("leekwanghyup@naver.com")
-				.build();
-		memberService.join(vo);
+		MemberVO read = memberRepository.read("leekwanghyup");
+		log.info(read);
 	}
 
-	// 회원등급변경
-	@Test
-	public void test2() {
-		memberService.updateMemberType(new AuthVO("admin",MemberType.ROLE_ADMIN));
-	}
 }
