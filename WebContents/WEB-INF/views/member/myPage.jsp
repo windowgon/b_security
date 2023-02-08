@@ -6,6 +6,7 @@
 	<div class="jumbotron">
 		<h1>로그인한 사용자</h1>
 	</div>
+	${memberInfo}
 
 </div>
 

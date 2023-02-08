@@ -7,6 +7,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
+import lombok.Getter;
+@Getter
 public class MemberDetail extends User{
 	
 	private static final long serialVersionUID = -2347344875567152317L;

@@ -10,9 +10,11 @@
 	<a href="${contextPath }/member/join">회원가입</a><br>
 	</sec:authorize>
 	<a href="${contextPath}/member/all">모든사용자</a><br>
-	<a href="${contextPath}/member/member">회원페이지</a><br>
-	<a href="${contextPath}/member/admin">관리자페이지</a><br>
+	<a href="${contextPath}/member/myPage">회원페이지</a><br>
 	
+	<sec:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_SUB_ADMIN')">
+		<a href="${contextPath}/member/admin">관리자페이지</a><br>
+	</sec:authorize>
 	<sec:authorize access="isAuthenticated()"> <!-- 권한이 있는 경우(로그인한 사용자) -->
 	<form action="${contextPath}/member/logout" method="post">
 		<p><sec:authentication property="principal.username"/>님 로그인중 </p>

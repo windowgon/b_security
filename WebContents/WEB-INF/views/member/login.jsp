@@ -19,6 +19,7 @@
 			<strong>${errorMessage}</strong>
 		</div>
 		</c:if>
+		로그인상태 유지 : <input type="checkbox" name="remember-me"><br>
 		<button class="btn btn-primary">로그인</button>
 	</form>
 </div>

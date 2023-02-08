@@ -5,6 +5,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.jafa.domain.AuthListDTO;
 import com.jafa.domain.AuthVO;
+import com.jafa.domain.MemberDetail;
 import com.jafa.domain.MemberType;
 import com.jafa.domain.MemberVO;
 import com.jafa.service.MemberService;
@@ -40,9 +42,14 @@ public class MemberController {
 		// 모든 사용자 허용
 	}
 	
-	@GetMapping("/member")
-	public void doMember() {
-		// 로그인 사용자 허용
+	@GetMapping("/myPage")
+	public String myPage(Authentication auth, Model model) {
+		// 회원페이지
+		MemberDetail principal = (MemberDetail) auth.getPrincipal();
+		MemberVO memberVO = principal.getMemberVO();
+		log.info(memberVO);
+		model.addAttribute("memberInfo", memberVO);
+		return "/member/myPage";
 	}
 	
 	@GetMapping("/admin")
